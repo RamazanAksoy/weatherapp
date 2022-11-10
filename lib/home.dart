@@ -28,51 +28,7 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.place,
-                    color: Colors.black,
-                    size: 19.sp,
-                  ),
-                  SizedBox(
-                    width: 3.w,
-                  ),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.black,
-                    ),
-                    elevation: 16,
-                    underline: Container(color: Colors.transparent),
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownValue = value!;
-                      });
-                    },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                  const Spacer(),
-                  Icon(
-                    Icons.search,
-                    color: Colors.black,
-                    size: 21.sp,
-                  )
-                ],
-              ),
-            ),
+            appBarHome(),
             Container(
               width: 90.w,
               height: 23.h,
@@ -362,5 +318,53 @@ class _HomeState extends State<Home> {
         )),
       ),
     );
+  }
+
+  Padding appBarHome() {
+    return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.place,
+                  color: Colors.black,
+                  size: 19.sp,
+                ),
+                SizedBox(
+                  width: 3.w,
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black,
+                  ),
+                  elevation: 16,
+                  underline: Container(color: Colors.transparent),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w500),
+                  onChanged: (String? value) {
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  items: list.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.search,
+                  color: Colors.black,
+                  size: 21.sp,
+                )
+              ],
+            ),
+          );
   }
 }
