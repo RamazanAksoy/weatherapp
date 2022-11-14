@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^1.1.6
   animate_do: ^3.0.1
   showcaseview: ^2.0.0+1
+  provider: ^6.0.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

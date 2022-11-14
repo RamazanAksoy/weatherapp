@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weatherapp/providers/weather_provider.dart';
 
 const List<String> list = <String>[
   'Tanjungsiang, Subang',
@@ -17,9 +19,17 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+
 class _HomeState extends State<Home> {
   String dropdownValue = list.first;
 
+@override
+  void initState() {
+    // TODO: implement initState
+    final wetProvider=Provider.of<WeatherProvider>(context,listen: false);
+    wetProvider.getWeatherData(context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +38,13 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            FadeInDown(delay: Duration(seconds: 0), child: appBarHome()),
-            FadeInUp(delay: Duration(seconds: 1), child: buildWeather()),
+            FadeInDown(delay: const Duration(seconds: 0), child: appBarHome()),
+            FadeInUp(delay: const Duration(seconds: 1), child: buildWeather()),
             SizedBox(
               height: 5.w,
             ),
          ElasticIn(
-              delay: Duration(seconds: 2),
+              delay: const Duration(seconds: 2),
               child:   Row(
               children: [
                 SizedBox(
