@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   responsive_sizer: ^3.1.1
   flutter_svg: ^1.1.6
+  animate_do: ^3.0.1
+  showcaseview: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
