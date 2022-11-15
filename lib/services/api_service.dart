@@ -1,17 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
 
-import 'package:http/http.dart';
 
 import '../models/current_weather_response.dart';
 import 'package:http/http.dart' as http;
 
-Future<CurrentWeatherResponse?> getCurrentData() async {
+Future<CurrentWeatherResponse?> getCurrentData(String deger) async {
   CurrentWeatherResponse weatherResponse;
   try {
     final response = await http.get(Uri.parse(
-        "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=ae3650ad93d2f13cba73f4397b834e66&lang=tr"));
+        "https://api.openweathermap.org/data/2.5/weather?q=$deger&appid=ae3650ad93d2f13cba73f4397b834e66&lang=tr&units=metric"));
     return CurrentWeatherResponse.fromJson(jsonDecode(response.body));
   } catch (e) {
   //  log(e.toString());

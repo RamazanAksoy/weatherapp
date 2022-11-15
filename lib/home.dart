@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weatherapp/providers/weather_provider.dart';
 
 const List<String> list = <String>[
-  'Tanjungsiang, Subang',
-  'Istanbul, Turkey',
-  'Berlin, Germany',
-  'Paris, France'
+  'Esenler',
+  'Sancaktepe',
+  'Esenyurt',
+  'Uskudar'
 ];
 
 class Home extends StatefulWidget {
@@ -19,79 +19,84 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-
 class _HomeState extends State<Home> {
   String dropdownValue = list.first;
+  WeatherProvider? wetProvider;
 
-@override
+  @override
   void initState() {
-    // TODO: implement initState
-    final wetProvider=Provider.of<WeatherProvider>(context,listen: false);
-    wetProvider.getWeatherData(context);
+    wetProvider = Provider.of<WeatherProvider>(context, listen: false);
+    wetProvider!.getWeatherData(context,"Esenler");
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-            child: Column(
-          children: [
-            FadeInDown(delay: const Duration(seconds: 0), child: appBarHome()),
-            FadeInUp(delay: const Duration(seconds: 1), child: buildWeather()),
-            SizedBox(
-              height: 5.w,
-            ),
-         ElasticIn(
-              delay: const Duration(seconds: 2),
-              child:   Row(
-              children: [
-                SizedBox(
-                  width: 5.w,
-                ),
-                Text(
-                  "Cuaca Per Jam",
-                  style:
-                      TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),),
-            SizedBox(
-              height: 2.h,
-            ),
-            FadeInLeft(delay: Duration(seconds: 3), child: buildweatherList()),
-            SizedBox(
-              height: 5.h,
-            ),
-            ElasticIn(
-              delay: Duration(seconds: 4),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Harian",
-                    style: TextStyle(
-                        fontSize: 17.5.sp, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            Column(children: [
-              FadeInRight(
-                  delay: Duration(seconds: 5), child: currentWeatherDetails()),
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+              child: Column(
+            children: [
+              FadeInDown(
+                  delay: const Duration(seconds: 0), child: appBarHome()),
               FadeInUp(
-                  delay: Duration(seconds: 6), child: buildOtherWeatherList()),
-            ]),
-          ],
-        )),
-      ),
-    );
+                  delay: const Duration(seconds: 1), child: buildWeather()),
+              SizedBox(
+                height: 5.w,
+              ),
+              ElasticIn(
+                delay: const Duration(seconds: 2),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      "Cuaca Per Jam",
+                      style: TextStyle(
+                          fontSize: 17.5.sp, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              FadeInLeft(
+                  delay: const Duration(seconds: 3), child: buildweatherList()),
+              SizedBox(
+                height: 5.h,
+              ),
+              ElasticIn(
+                delay: const Duration(seconds: 4),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      "Harian",
+                      style: TextStyle(
+                          fontSize: 17.5.sp, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Column(children: [
+                FadeInRight(
+                    delay: const Duration(seconds: 5),
+                    child: currentWeatherDetails()),
+                FadeInUp(
+                    delay: const Duration(seconds: 6),
+                    child: buildOtherWeatherList()),
+              ]),
+            ],
+          )),
+        ));
   }
 
   SizedBox buildOtherWeatherList() {
@@ -109,7 +114,7 @@ class _HomeState extends State<Home> {
             height: 10.h,
             padding: EdgeInsets.all(18.sp),
             decoration: BoxDecoration(
-                color: Color(0xffD2DFFF),
+                color: const Color(0xffD2DFFF),
                 borderRadius: BorderRadius.circular(15.sp)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,8 +151,9 @@ class _HomeState extends State<Home> {
                 ),
                 Row(
                   children: [
-                    Text("19 C"),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right))
+                    const Text("19 C"),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.arrow_right))
                   ],
                 ),
               ],
@@ -164,7 +170,7 @@ class _HomeState extends State<Home> {
       height: 12.h,
       padding: EdgeInsets.all(18.sp),
       decoration: BoxDecoration(
-          color: Color(0xffE7755C).withOpacity(0.13),
+          color: const Color(0xffE7755C).withOpacity(0.13),
           borderRadius: BorderRadius.circular(15.sp)),
       child: Row(
         children: [
@@ -210,7 +216,7 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.all(12.sp),
             margin: EdgeInsets.only(left: 3.w, right: 3.w),
             decoration: BoxDecoration(
-                color: Color(0xffFBFBFB),
+                color: const Color(0xffFBFBFB),
                 borderRadius: BorderRadius.circular(15.sp)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -282,13 +288,22 @@ class _HomeState extends State<Home> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text(
-                      "18º C",
-                      style: TextStyle(color: Colors.white, fontSize: 17.sp),
-                    ),
+                    Consumer(
+                        builder: (context, WeatherProvider value, child) =>
+                            value.isLoading == true
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : Text(
+                                    wetProvider!
+                                        .currentWeatherResponse.main!.temp
+                                        .toString(),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17.sp),
+                                  )),
                     SizedBox(
                       width: 18.w,
                     ),
@@ -297,13 +312,19 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 0.5.h,
                 ),
-                Text(
-                  "Hujan Berawan",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w500),
-                )
+                Consumer(
+                    builder: (context, WeatherProvider value, child) =>
+                        value.isLoading == true
+                            ? const Center(child: CircularProgressIndicator())
+                            : Text(
+                                wetProvider!.currentWeatherResponse.name
+                                    .toString(),
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.sp,
+                                    fontWeight: FontWeight.w500),
+                              ))
               ],
             ),
           ],
@@ -371,6 +392,9 @@ class _HomeState extends State<Home> {
               setState(() {
                 dropdownValue = value!;
               });
+            
+           wetProvider!.getWeatherData(context,value);
+
             },
             items: list.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(

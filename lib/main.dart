@@ -18,6 +18,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       );
     });
   }
+
 }
 
 class MyHomePage extends StatefulWidget {
