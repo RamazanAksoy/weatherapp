@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 
-import '../models/current_weather_response.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/current_weather_response.dart';
 
 Future<CurrentWeatherResponse?> getCurrentData(String deger) async {
   CurrentWeatherResponse weatherResponse;
