@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:weatherapp/ui/home/model-view/weather_provider.dart';
-import 'ui/home/view/home.dart';
+import 'ui/home/view/home_screen.dart';
 
 void main() {
   runApp(MultiProvider(
