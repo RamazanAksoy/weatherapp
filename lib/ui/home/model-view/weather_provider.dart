@@ -7,6 +7,8 @@ class WeatherProvider extends ChangeNotifier {
   CurrentWeatherResponse currentWeatherResponse = CurrentWeatherResponse();
   FiveDaysPrediction fiveDaysPrediction = FiveDaysPrediction();
   bool isLoading = false, isLoadingFive = false;
+  int ?currentIndex;
+
 
   getWeatherData(context, deger) async {
     isLoading = true;
@@ -19,7 +21,11 @@ class WeatherProvider extends ChangeNotifier {
     isLoadingFive = true;
     fiveDaysPrediction = (await getFiveDaysPredictionData(deger.toString()))!;
     isLoadingFive = false;
-    print(fiveDaysPrediction.list![1].dtTxt.toString());
     notifyListeners();
+  }
+  
+  setCurrentIndex(int index){
+  currentIndex=index;
+  notifyListeners();
   }
 }
