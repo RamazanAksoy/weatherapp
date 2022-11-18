@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:weatherapp/ui/home/model-view/weather_provider.dart';
@@ -20,8 +21,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(builder: (context, orientation, screenType) {
-      return MaterialApp(
+    return  ResponsiveSizer(builder: (context, orientation, screenType) {
+      return GetMaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
