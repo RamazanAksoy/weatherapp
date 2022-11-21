@@ -10,9 +10,9 @@ class WeatherProvider extends ChangeNotifier {
   int ?currentIndex;
 
 
-  getWeatherData(context, deger) async {
+  getWeatherData(BuildContext context, deger) async {
     isLoading = true;
-    currentWeatherResponse = (await getCurrentData(deger.toString()))!;
+    currentWeatherResponse = (await getCurrentData(deger.toString(),context))!;
     isLoading = false;
     notifyListeners();
   }

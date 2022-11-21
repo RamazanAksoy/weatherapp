@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:weatherapp/ui/home/model/five_days_prediction.dart';
@@ -13,7 +15,7 @@ final Dio _dio = Dio(BaseOptions(
     receiveTimeout: 3000))
   ..interceptors.add(Logging());
 
-Future<CurrentWeatherResponse?> getCurrentData(String deger) async {
+Future<CurrentWeatherResponse?> getCurrentData(String deger,BuildContext context) async {
   try {
     final responsedio = await _dio.get("weather", queryParameters: {
       "q": deger,
@@ -29,6 +31,26 @@ Future<CurrentWeatherResponse?> getCurrentData(String deger) async {
     switch (responsedio.statusCode) {
       case (200):
         {
+
+          //snackbar 2 
+   final snackBar = SnackBar(
+                  /// need to set following properties for best effect of awesome_snackbar_content
+                  elevation: 0,
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    title: '200',
+                    message:
+                        'he request succeeded.',
+                    contentType: ContentType.failure,
+                  ),
+                );
+
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(snackBar);
+
+//snackbar1
           Get.snackbar("200", "The request succeeded.");
         }
         break;
@@ -41,16 +63,8 @@ Future<CurrentWeatherResponse?> getCurrentData(String deger) async {
            case (500):
         {
                    Get.snackbar("500","The server has encountered a situation it does not know how to handle.");
-
         }
         break;
-           case (404):
-        {
-          print(
-              "The HTTP 404 Not Found response status code indicates that the server cannot find the requested resource.");
-        }
-        break;
-
 
       default:
         {}
